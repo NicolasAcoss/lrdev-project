@@ -1,0 +1,5 @@
+files:                                  # A list of all the extra files which are a mandatory part of the script
+  - name: initialize.js                 # The file name, it can be relative to the script directory or rooted
+    role: script                        # The role of the file in the script. Currently only "script" role is supported
+  - name: finalize.js                   # The file name, it can be relative to the script directory or rooted
+    role: script                        # The role of the file in the script. Currently only "script" role is supported

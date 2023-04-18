@@ -1,0 +1,59 @@
+#Important: We strongly recommend that you do not add your password in plain text.
+tenant:
+  host: https://loadrunner-cloud.saas.microfocus.com  # The schema and host name of LRC. (schema://host)
+  user: ""                                            # The username (or client-id) required to log in to LRC.
+  password: ""                                        # The password (or secret-key) required to log in to LRC.
+  tenantId: 0                                         # The tenant id of the user.
+  projectId: 1                                        # The id of the project on which the tests will run.
+  sendEmail: true                                     # If true an email with the report will be sent at the end of the run.
+  emailAddresses: []                                  # List of additional email addresses for the report (in addition to the logged-in user). For example ['user1@mymail.com','user2@mymail.com']
+
+loadTest:
+  location: cloud                                     # Define if the test will run on a cloud or on-premises load generator. Default is cloud.
+                                                      # Format: cloud|onPremise
+
+# onPremise: ['Lab1 OPLG', 'Lab2 OPLG']               # List of on-premises load generators. Distribution of the Vusers is determined internally by LRC.
+                                                      # Use the command "ScaLRD lrc info loadGenerators" to view load generator names and their availability.
+
+# cloud:                                          # Vuser distribution across cloud locations.
+#   - name: aws-eu-west-2                             # Format: - name: <Location Name>
+#     percent: 50                                     #           percent: <percentage of Vusers assigned to this location>
+#   - name: aws-ap-south-1                            # Note: Percent sum must be 100. Percent value must be an integer.
+#     percent: 50                                     # Use the command "ScaLRD lrc info locations <testId>" to view location names and their availability.
+
+scenario:                                     # Scenario parameters, all times are in seconds.
+  vusers: 5                                   # The number of vusers to run.
+  pacing: 5                                   # The pacing between vuser iterations.
+  rampUp: 10                                  # The ramp up time.
+  duration: 60                                # The total duration of the actions.
+  tearDown: 10                                # The teardown time.
+
+encryption:
+  keyLocation: ""                             #Location of file which contains key used for data decryption. Format: "folder/keyFile.txt"
+
+script:
+  exclude:                                    # List of regular expressions for files to exclude from uploading to LRC.
+    - result
+    - codegen
+    - data
+    - .+\.log$
+    - .+\.pdf$
+    - lrc_uploader\.yml
+
+logger:                                      # Configuration for the system wide logger
+  filename: ./lrc_uploader.log               # The location and name of the log file.
+  logLevel: info                             # The log level of the system log. Possible values are trace, debug, info, warning, error
+  maxSize: 100                               # The maximum size in Mb of a single log file (for rotating log).
+  maxBackups: 5                              # The maximum number of log files to create (for rotating log).
+  maxAge: 30                                 # The maximum number of days to save a rotated log file.
+  showInConsole: true                        # If true, everything sent to the log is printed to the console (this may slow down execution).
+  stackTraceOnError: false                   # If true, error messages will contain a full stack trace from where the error occurred.
+  maxLineLength: 500                         # The maximum number of characters to show in a single line of the console (will be truncated after that) or 0 if no truncation is needed.
+
+general:
+  expectedReportDelay: 20                    # The number of seconds to wait before asking for the report when the test run ends.
+  requestRetries: 3                          # The number of retries to call any LRC API if a call returns with erroneous status.
+  suffixToReportFileName: true               # Add the run id as suffix to the pdf report file name.
+  uniqueIdentifier: ""                       # This identifier will be appended to script name and test name to allow multiple users upload a script with the same name.
+  waitForRunTimeout: 10                      # The number of seconds to wait while checking the status of the test run. (Use -1 to wait continuously until the run is complete.)
+  # After the time elapses (and ScaLRD exits), you can later check status again using the getResults command line argument, or using the "Get test run results" task in VS Code.

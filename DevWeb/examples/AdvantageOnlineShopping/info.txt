@@ -1,0 +1,2 @@
+1. usernames and passwords are stored in accounts.txt parameter file (csv).
+2. parameters described in parameters.yml file.

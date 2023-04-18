@@ -1,0 +1,41 @@
+{
+  "name": "javascript-runner",
+  "version": "2022.2.0",
+  "description": "The component that runs the user code",
+  "main": "app.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/_mocha test/**/*.test.js",
+    "coverage": "nyc npm run test",
+    "sdk": "node vuser/build_sdk.js",
+    "eslint": "eslint *.js \"**/*.js\"",
+    "eslint-fix": "eslint --fix *.js \"**/*.js\"",
+    "build-doc-html": "showdown makehtml -i vuser/DOCUMENTATION.md -o vuser/JavaScriptSDK.html",
+    "add-doc-style": "type style.html >> vuser/JavascriptSDK.html",
+    "add-doc-style-linux": "cat style.html >> vuser/JavaScriptSDK.html",
+    "doc": "npm run build-doc-html && npm run add-doc-style",
+    "doc-linux": "npm run build-doc-html && npm run add-doc-style-linux",
+    "toc": "markdown-toc -i vuser/DOCUMENTATION.md",
+    "postinstall": "npm run sdk"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.houston.softwaregrp.net:Performance-Engineering/phoenix-javascript-runner.git#"
+  },
+  "author": "",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-mocha": "^9.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "mocha": "^9.1.3",
+    "mocha-junit-reporter": "^2.0.2",
+    "nyc": "^15.1.0",
+    "proxyquire": "^2.1.3",
+    "sinon": "^11.1.2",
+    "sinon-chai": "^3.7.0"
+  }
+}

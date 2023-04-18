@@ -1,0 +1,87 @@
+name: devWeb
+version: 2022.2.0
+
+logger:                             #Configuration for the system wide logger
+  filename: ./logs/devWeb.log       #The location and name of the log file.
+  logLevel: info                    #The log level of the system log. Possible values are [trace, debug, info, warning, error].
+  maxSize: 100                      #The maximum size in Mb of a single log file (for rotating log).
+  maxBackups: 5                     #The maximum number of log files to create (for rotating log).
+  maxAge: 30                        #The maximum number of days to save a rotated log file.
+  showInConsole: false              #If true, everything sent to the log is printed to the console (this may slow down execution).
+  stackTraceOnError: false          #If true, error messages will contain a full stack trace from where the error occurred.
+  maxLineLength: 200                #The maximum number of characters to show in a single line of the console (if the number of characters in a line exceeds the specified value, the line is truncated). If set to 0, no truncation is performed.
+  logFilePerExecution: false        #If true, the process ID is appended to the log file. This is done to allow multiple simultaneous executions from the same directory.
+  vuserIoBufferSize: 4096           #The I/O buffer size for each vuser logger
+
+orchestrator:                       #Configuration for the Orchestrator component
+  serverPort: 0                     #The port of the server that other components connect to (0 for automatic port selection).
+  channelBufferSize: 1000           #The buffer size of the communication channel that is used to receive messages.
+  poolBufferCount: 512              #The number of buffers for response pool. This number should be around the number of predicted simultaneous web requests from all the Vusers.
+  poolBufferSize: 8192              #The initial size of each response pool buffer.
+  reduceOversizedBuffers: true      #If set to true every buffer that exceeds the poolBufferSize will be reduced in size when it is released. Enable this option only if the buffers take too much memory.
+
+runLogic:                           #Configuration for the RunLogic component
+  numberOfWorkers: 1                #The number of workers that are initialized and started.
+  runnerControllingPort: 0          #The port for the Runner to connect to the RunLogic and receive the control requests (for example, Start Vusers) (0 for automatic port selection).
+  runnerCommunicationPort: 0        #The port for the Runner to connect to the RunLogic and send Vuser requests (0 for automatic port selection).
+  maxInitializingVusers: 20         #The maximum number of Vusers that can be simultaneously initialized (per second) in "load" execution mode. Set to 0 for unlimited. This setting will constrain the ramp-up value in the scenario.yml file.
+  reportDuration: 1                 #The time interval (in seconds) to report aggregated data to mdrv/SRL controller
+  aggregateBuffer: 65536            #The max size of the buffer that stores the aggregated data for the SRL controller
+  waitForSocketTimeout: 10          #The timeout (in seconds) to wait for socket become ready before send/receive data to/from SRL controller
+
+measurements:                       #Configuration for storing measurements
+  adapters: ["sqlite"]              #Configuration for database adapters that is used for measurements. Available adapters are [sqlite, influxDB, influxDBV2, analysisInfluxDB, analysisInfluxDBV2].
+  useProxy: false                   #Indicates whether to use proxy settings from rts.yml during connection to measurements instance
+  runName: ""                       #Run Name tag for reported data, providing easier identification of streamed data on InfluxDB. Leave empty to use script name by default
+
+influxDB:                           #Configuration for InfluxDB adapter instance
+  url: ""                           #The InfluxDB endpoint (for example: http://myHost:8086)
+  dbName: "devWebDB"                #The InfluxDB v1 database name
+  userName: ""                      #The InfluxDB username
+  password: ""                      #The InfluxDB password
+  ignoreBadCertificate: false       # If true, SSL accepts any certificate presented by the influxDB server and any hostname in that certificate.
+
+influxDBV2:                         #Configuration for InfluxDB V2 adapter instance
+  url: ""                           #The InfluxDB endpoint (for example: http://myHost:8086)
+  token: ""                         #The InfluxDB v2 authentication token
+  organization: ""                  #The InfluxDB v2 organization name
+  bucketName: "devWeb"              #The InfluxDB v2 bucket name
+  ignoreBadCertificate: false       # If true, SSL accepts any certificate presented by the influxDB server and any hostname in that certificate.
+
+analysisInfluxDB:                   #Configuration for Analysis adapter instance that works with InfluxDB
+  url: ""                           #The InfluxDB endpoint (for example: http://myHost:8086)
+  dbName: ""                        #The InfluxDB v1 database name
+  userName: ""                      #The InfluxDB username
+  password: ""                      #The InfluxDB password
+  ignoreBadCertificate: false       # If true, SSL accepts any certificate presented by the influxDB server and any hostname in that certificate.
+
+analysisInfluxDBV2:                 #Configuration for Analysis adapter instance that works with InfluxDB v2
+  url: ""                           #The InfluxDB endpoint (for example: http://myHost:8086)
+  token: ""                         #The InfluxDB v2 authentication token
+  organization: ""                  #The InfluxDB v2 organization name
+  bucketName: ""                    #The InfluxDB v2 bucket name
+  ignoreBadCertificate: false       # If true, SSL accepts any certificate presented by the influxDB server and any hostname in that certificate.
+
+jsRunner:                           #Configuration for the jsRunner component
+  manualStart: false                #If true, the user need to start the jsRunner manually by executing the appropriate node.js process.
+  path: ./bin/jsrunner              #The path to the jsRunner app.js file.
+  nodePath: ./bin/nodejs/jsrunner   #The path to the node.js that runs the jsRunner.
+  gcInterval: 10                    #The number of iterations that are executed before NodeJS Garbage Collector call. Set to 0 for disabling GC call.
+  debug: false                      #If true, everything the JSRunner sends to the log is printed to the console (this may slow down execution).
+
+debug:                              #Configuration for the internal debugger (DO NOT CHANGE THESE SETTINGS)
+  profileServer: false              #If true, enable profile server
+  cpuProfile: ""                    #If not empty, write CPU profile to the specified file.
+  memProfile: ""                    #If not empty, write memory profile to specified file
+  traceFile: ""                     #If not empty, write trace data to specified file
+  memStatFile: ""                   #If not empty, write memory usage statistics to specified file
+
+jsInspector:                        #Configuration for the JavaScript inspector
+  address: localhost                #The host for the inspector, 'localhost' is used by default if this value is missing.
+  port: 9230                        #The port for the inspector, '9230' is used by default if this value is missing.
+
+transactions:
+  storeInFile: true                 #If true, then the transactions.yml file is created. This file contains a list of transaction names.
+
+rendezvous:
+  storeInFile: true                 #If true, then the rendezvous.yml file is created. This file contains a list of rendezvous names.

@@ -1,0 +1,83 @@
+
+environment:
+  host: ""                                   # The schema and host name of LRE. (schema://host)
+  tenantId: ""                               # The tenant id of the user. Leave empty string for no tenant environment
+  domain: ""                                 # The domain name of the user.
+  project: ""                                # The project name on which the tests will run.
+  authenticationMode: "basic"                # The authentication-mode required to log in to LRE (basic or accessKey)
+
+#Important: We strongly recommend that you do not add your password in plain text.
+basic:
+  userName: ""                               # The username required to log in to LRE.
+  password: ""                               # The password required to log in to LRE.
+
+#Important: We strongly recommend that you do not add your clientSecret in plain text.
+accessKey:
+  clientId: ""                               # The client-id required to log in to LRE.
+  clientSecret: ""                           # The client-secret required to log in to LRE.
+
+workspace:
+  testPlan: "AutoTestPlan"                   # The script is uploaded to the testPlan Folder
+  testSetFolder: "AutoTestSetFolder"         # The testSet is created under testSetFolder folder
+  testSet: "AutoTestSet"                     # The performance test is created under testSet folder
+
+# hosts:                                     # Performance test host configuration.
+#   - type: specific                         # Format: - type: <host type>     (specific, automatch or cloud)
+#     options:                               #           options: <list of properties derived from the host type>
+#       name: mymachine.host.net             # Options for specific type: name - the name of the host
+#   - type: automatch                        # Options for automatch type: amount - the number of hosts to be selected automatically by LoadRunner Enterprise.
+#     options:                               # Options for cloud type: name - the name of the cloud template
+#       amount: 2
+#   - type: cloud                            # Note: Connecting to cloud hosts is a tech preview feature, and supported from LRE 2022 R1.
+#     options:
+#       name: my_cloud_template_aws
+                                             # For list of specific operational hosts use the command:
+                                             # ScaLRD.exe lre info hosts
+                                             # For list of cloud templates use the command:
+                                             # ScaLRD.exe lre info cloudTemplates
+
+#controller:
+# name: mycontroller.machine.net             # The name of the selected controller machine.
+
+#trendReport:                                # Trend report configuration - add test run to trend report in LRE.
+#  name:                                     # A unique name to use to create a new trend report, or the name of an existing one.
+#  description:                              # Optional. Used when a new trend report is created.
+#  timeRange:
+#    startTime:                              # Optional. Start point in the test run to collect trend data. Format: hours:minutes:seconds
+#    endTime:                                # optional. End point in the test run to collect trend data. Format: hours:minutes:seconds
+                                             # Note: Both start time and end time must be configured for the time range.
+
+encryption:
+  keyLocation: ""                             #Location of file which contains key used for data decryption. Format: "folder/keyFile.txt"
+
+scenario:                                     # Scenario parameters, all times are in seconds.
+  vusers: 5                                   # The number of vusers to run.
+  pacing: 5                                   # The pacing between vuser iterations.
+  rampUp: 10                                  # The ramp up time.
+  duration: 60                                # The total duration of the actions.
+  tearDown: 10                                # The teardown time.
+
+logger:                                      # Configuration for the system wide logger
+  filename: ./lre_uploader.log               # The location and name of the log file.
+  logLevel: info                             # The log level of the system log. Possible values are trace, debug, info, warning, error
+  maxSize: 100                               # The maximum size in Mb of a single log file (for rotating log).
+  maxBackups: 5                              # The maximum number of log files to create (for rotating log).
+  maxAge: 30                                 # The maximum number of days to save a rotated log file.
+  showInConsole: true                        # If true, everything sent to the log is printed to the console (this may slow down execution).
+  stackTraceOnError: false                   # If true, error messages will contain a full stack trace from where the error occurred.
+  maxLineLength: 500                         # The maximum number of characters to show in a single line of the console (will be truncated after that) or 0 if no truncation is needed.
+
+general:
+  requestRetries: 3                          # The number of retries to call any LRE API if a call returns with erroneous status.
+  waitForRunTimeout: 10                      # The number of seconds to wait while checking the status of the test run. (Use -1 to wait continuously until the run is complete.)
+  # After the time elapses (and ScaLRD exits), you can later check status again using the getResults command line argument, or using the "Get test run results" task in VS Code.
+
+
+script:
+  exclude:                                    # List of regular expressions for files to exclude from uploading to LRE.
+    - result
+    - codegen
+    - data
+    - .+\.log$
+    - .+\.pdf$
+    - lre_uploader\.yml

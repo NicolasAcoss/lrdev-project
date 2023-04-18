@@ -1,0 +1,17 @@
+parameters:
+- blockSize: auto
+  columnName: password
+  fileName: params.txt
+  name: password
+  nextRow: sequential
+  nextValue: iteration
+  onEnd: loop
+  type: csv
+- blockSize: auto
+  columnName: userName
+  fileName: params.txt
+  name: userName
+  nextRow: sequential
+  nextValue: iteration
+  onEnd: loop
+  type: csv

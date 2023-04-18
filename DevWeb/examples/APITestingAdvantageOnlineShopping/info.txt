@@ -1,0 +1,5 @@
+1. Usernames and passwords are stored in "params.txt" parameter file (csv).
+2. Parameters described in "parameters.yml" file.
+3. "swaggerApi.js" describes the API functions derived from "aos_order.json" (the swagger JSON file for Advantage Online Shopping).
+4. Don't forget to configure an appropriate proxy and to import DevWeb certificates.
+5. BE ADVISED: regenerating the API functions with the OfflineGenerator in the current script folder will override its main.js.

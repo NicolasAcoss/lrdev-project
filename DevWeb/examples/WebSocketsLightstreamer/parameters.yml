@@ -1,0 +1,15 @@
+parameters:                    #The parameters header, it must be the first line of the file
+  - name: COMPANY              #The name of the parameter that can later be used in the code
+    type: csv                  #The type of the data source of the parameter. The valid values are: csv 
+    fileName: COMPANY.dat      #The name of the file that has all the values for this parameter
+    columnName: COMPANY        #The column name used to draw values for this parameter
+    nextValue: iteration       #The logic used to know when to retrieve new values
+    nextRow: random		       #The loogic used to know how to retrieve new values
+    onEnd: loop                #What happens when there are no more values remaining and the script needs another value
+  - name: INDEX	               #The name of the parameter that can later be used in the code
+    type: csv                  #The type of the data source of the parameter. The valid values are: csv 
+    fileName: COMPANY.dat      #The name of the file that has all the values for this parameter
+    columnName: INDEX          #The column name used to draw values for this parameter
+    nextValue: iteration       #The logic used to know when to retrieve new values
+    nextRow: same as COMPANY   #The loogic used to know how to retrieve new values
+    onEnd: loop                #What happens when there are no more values remaining and the script needs another value

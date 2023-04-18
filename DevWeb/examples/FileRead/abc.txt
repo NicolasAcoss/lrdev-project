@@ -1,0 +1,27 @@
+File
+An object that allows file operations on a particular file.
+constructor(path) : File 
+Creates a file object that will perform operations on a file at the given path. The engine controls the file lifecycle therefore you don't need to open/close the file. The path can be an absolute path or a relative path to the script directory.
+Example:
+const myFile = new load.File('data.xml');
+Methods
+read(options): Object 
+Reads the file and returns the read value based on the given options.
+Possible options are:
+forceRead (optional, boolean, default: false) - When set to true, will ignore the caching mechanism and read the file from disk. Use this option only if the read file can change during the script run. 
+returnContent (mandatory, boolean, default: true) - When true, the entire content of the file is returned (see extractors property for retrieving partial file data).
+extractors (optional, array of extractor objects) - Works the same as the WebRequest extractors. Refer to WebRequest Extractors for more details. 
+Returns an object that has two properties: 
+content - The entire content of the read file. This property is only available when "returnContent" is set to true in the options 
+extractors - The extracted results of the given extractors. Refer to extractor results for more details. 
+Example:
+const myFile = new load.File('data.xml');
+const readResult = myFile.read({
+  extractors:[
+    new load.RegexpExtractor("title","<customerCode>(.*?)</customerCode>","i")
+  ]
+});
+
+load.log(`The customer code in data.xml is ${readResult.extractors.title}`);
+append(content) 
+Appends the given content to the file.

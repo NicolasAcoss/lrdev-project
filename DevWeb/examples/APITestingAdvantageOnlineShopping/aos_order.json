@@ -1,0 +1,1647 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Git Branch = 2.5<br/>Last commit revision = d93550f3<br/>Last build time = 2020-09-01 08:58:25<br/>Build on machine Unknown *nix machine",
+        "version": "2.5-SNAPSHOT",
+        "title": "Advantage - order.war REST API",
+        "contact": {}
+    },
+    "host": "www.advantageonlineshopping.com",
+    "basePath": "/order",
+    "tags": [
+        {
+            "name": "order-controller",
+            "description": "Order Controller"
+        }
+    ],
+    "paths": {
+        "/api/v1/carts/{userId}": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Get user shopping cart",
+                "operationId": "getUserCartUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Replace user shopping cart",
+                "operationId": "replaceUserCartUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "in": "body",
+                        "name": "shoopingCartProducts",
+                        "description": "shoopingCartProducts",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ShoppingCartDto"
+                            }
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Clear user shopping cart",
+                "operationId": "clearUserCartUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/carts/{userId}/orders/{orderId}": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Add old order to shopping cart",
+                "operationId": "addOldOrderToCartUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "orderId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/carts/{userId}/product/{productId}/color/{color}": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Add product to shopping cart",
+                "operationId": "addProductToCartUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "color",
+                        "in": "path",
+                        "description": "color",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "hasWarranty",
+                        "in": "query",
+                        "description": "hasWarranty",
+                        "required": false,
+                        "type": "boolean",
+                        "default": false
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "productId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "quantity",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "put": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Update Cart-Product quantity and/or color",
+                "operationId": "updateProductInCartUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "color",
+                        "in": "path",
+                        "description": "color",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "new_color",
+                        "in": "query",
+                        "description": "new_color",
+                        "required": false,
+                        "type": "string",
+                        "default": "-1"
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "productId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "quantity",
+                        "in": "query",
+                        "description": "quantity",
+                        "required": false,
+                        "type": "integer",
+                        "default": -1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            },
+            "delete": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Remove a product from user shopping cart",
+                "operationId": "removeProductFromUserCartUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "color",
+                        "in": "path",
+                        "description": "color",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "productId",
+                        "in": "path",
+                        "description": "productId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/carts/{userId}/quantity": {
+            "put": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Verify and update products quantities in user cart",
+                "operationId": "verifyProductsQuantitiesInUserCartUsingPUT",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "in": "body",
+                        "name": "shoopingCartProducts",
+                        "description": "shoopingCartProducts",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ShoppingCartDto"
+                            }
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShoppingCartResponseDto"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/healthcheck": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Get application status",
+                "operationId": "getHealthCheckUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/order/Restore_db_factory_settings": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Restore Database factory settings",
+                "operationId": "dbRestoreFactorySettingsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/RestoredefaultDBsettingsResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/fields": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Get order fields",
+                "operationId": "orderFieldsUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/HistoryOrderHeaderDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal server error",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/history": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Get orders history by user-id and/or order-id",
+                "operationId": "getOrdersHistoryUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "order_id",
+                        "in": "query",
+                        "description": "order_id",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0,
+                        "format": "int64"
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "user_id",
+                        "required": false,
+                        "type": "integer",
+                        "default": 0,
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/HistoryOrderResponseDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/history/lines/users/{userId}": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Get orders history of orders-lines for userID",
+                "operationId": "getHistoryOrdersLinesUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/HistoryOrderLinesDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/history/users/{userId}": {
+            "get": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Clear user shopping cart",
+                "operationId": "removeAllOrdersForUserUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": true,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OrderHistoryRemoveDto"
+                        }
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/history/users/{userId}/{orderId}": {
+            "delete": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Clear user shopping cart",
+                "operationId": "removeOrderUsingDELETE",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "orderId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/HistoryOrderLinesDto"
+                        }
+                    },
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/orders/users/{userId}": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Purchase new order",
+                "operationId": "doPurchaseUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "JSON Web Token",
+                        "required": false,
+                        "type": "string",
+                        "default": "Bearer "
+                    },
+                    {
+                        "in": "body",
+                        "name": "purchaseRequest",
+                        "description": "purchaseRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/OrderPurchaseRequest"
+                        }
+                    },
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "userId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/OrderPurchaseResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Authorization token required",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong authorization token",
+                        "schema": {
+                            "$ref": "#/definitions/ErrorResponseDto"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/OrderPurchaseResponse"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/api/v1/shippingcost": {
+            "post": {
+                "tags": [
+                    "order-controller"
+                ],
+                "summary": "Order shipping cost",
+                "operationId": "getShippingCostFromShipExUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "costRequest",
+                        "description": "costRequest",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ShippingCostRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ShippingCostResponse"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "CartProduct": {
+            "type": "object",
+            "properties": {
+                "color": {
+                    "$ref": "#/definitions/ProductColor"
+                },
+                "exists": {
+                    "type": "boolean"
+                },
+                "hasWarranty": {
+                    "type": "boolean"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "CartProduct"
+        },
+        "ErrorResponseDto": {
+            "type": "object",
+            "properties": {
+                "reason": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "ErrorResponseDto"
+        },
+        "HistoryOrderAccountDto": {
+            "type": "object",
+            "properties": {
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "loginName": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "HistoryOrderAccountDto"
+        },
+        "HistoryOrderHeaderDto": {
+            "type": "object",
+            "properties": {
+                "customer": {
+                    "$ref": "#/definitions/HistoryOrderAccountDto"
+                },
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "orderShipingCost": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "orderTimestamp": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "orderTotalSum": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "paymentMethod": {
+                    "type": "string"
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HistoryOrderProductDto"
+                    }
+                },
+                "shippingAddress": {
+                    "type": "string"
+                },
+                "shippingTrackingNumber": {
+                    "type": "number",
+                    "format": "double"
+                }
+            },
+            "title": "HistoryOrderHeaderDto"
+        },
+        "HistoryOrderLineDto": {
+            "type": "object",
+            "properties": {
+                "OrderDate": {
+                    "type": "string"
+                },
+                "OrderNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PricePerUnit": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "ProductColorCode": {
+                    "type": "string"
+                },
+                "ProductColorName": {
+                    "type": "string"
+                },
+                "ProductID": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ProductImageUrl": {
+                    "type": "string"
+                },
+                "ProductName": {
+                    "type": "string"
+                },
+                "Quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "UserId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "orderTime": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "HistoryOrderLineDto"
+        },
+        "HistoryOrderLinesDto": {
+            "type": "object",
+            "properties": {
+                "OrderDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "OrderLines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HistoryOrderLineDto"
+                    }
+                },
+                "OrderNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "OrderTime": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TotalOrderPrice": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "UserId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "HistoryOrderLinesDto"
+        },
+        "HistoryOrderProductDto": {
+            "type": "object",
+            "properties": {
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "pricePerItem": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "productColor": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "productName": {
+                    "type": "string"
+                },
+                "productQuantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "HistoryOrderProductDto"
+        },
+        "HistoryOrderResponseDto": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "ordersHistory": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/HistoryOrderHeaderDto"
+                    }
+                }
+            },
+            "title": "HistoryOrderResponseDto"
+        },
+        "OrderHistoryRemoveDto": {
+            "type": "object",
+            "properties": {
+                "isSuccess": {
+                    "type": "boolean"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "successfulOrderHeaderDelete": {
+                    "type": "boolean"
+                },
+                "successfulOrderLineDelete": {
+                    "type": "boolean"
+                }
+            },
+            "title": "OrderHistoryRemoveDto"
+        },
+        "OrderPaymentInformation": {
+            "type": "object",
+            "properties": {
+                "Transaction_AccountNumber": {
+                    "type": "string"
+                },
+                "Transaction_Currency": {
+                    "type": "string"
+                },
+                "Transaction_CustomerPhone": {
+                    "type": "string"
+                },
+                "Transaction_MasterCredit_CVVNumber": {
+                    "type": "string"
+                },
+                "Transaction_MasterCredit_CardNumber": {
+                    "type": "string"
+                },
+                "Transaction_MasterCredit_CustomerName": {
+                    "type": "string"
+                },
+                "Transaction_MasterCredit_ExpirationDate": {
+                    "type": "string"
+                },
+                "Transaction_PaymentMethod": {
+                    "type": "string"
+                },
+                "Transaction_ReferenceNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Transaction_SafePay_Password": {
+                    "type": "string"
+                },
+                "Transaction_SafePay_UserName": {
+                    "type": "string"
+                },
+                "Transaction_TransactionDate": {
+                    "type": "string"
+                },
+                "Transaction_Type": {
+                    "type": "string"
+                }
+            },
+            "title": "OrderPaymentInformation"
+        },
+        "OrderPurchaseRequest": {
+            "type": "object",
+            "properties": {
+                "orderPaymentInformation": {
+                    "$ref": "#/definitions/OrderPaymentInformation"
+                },
+                "orderShippingInformation": {
+                    "$ref": "#/definitions/OrderShippingInformation"
+                },
+                "purchasedProducts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ShoppingCartDto"
+                    }
+                }
+            },
+            "title": "OrderPurchaseRequest"
+        },
+        "OrderPurchaseResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "hasWarranty": {
+                    "type": "boolean"
+                },
+                "orderNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "paymentConfirmationNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "trackingNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "warrantyNumber": {
+                    "type": "string"
+                }
+            },
+            "title": "OrderPurchaseResponse"
+        },
+        "OrderShippingInformation": {
+            "type": "object",
+            "properties": {
+                "Shipping_Address_Address": {
+                    "type": "string"
+                },
+                "Shipping_Address_City": {
+                    "type": "string"
+                },
+                "Shipping_Address_CountryCode": {
+                    "type": "string"
+                },
+                "Shipping_Address_CustomerName": {
+                    "type": "string"
+                },
+                "Shipping_Address_CustomerPhone": {
+                    "type": "string"
+                },
+                "Shipping_Address_PostalCode": {
+                    "type": "string"
+                },
+                "Shipping_Address_State": {
+                    "type": "string"
+                },
+                "Shipping_Cost": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Shipping_NumberOfProducts": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "Shipping_TrackingNumber": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "OrderShippingInformation"
+        },
+        "ProductColor": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "inStock": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "title": "ProductColor"
+        },
+        "RestoredefaultDBsettingsResponse": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "RestoredefaultDBsettingsResponse"
+        },
+        "SEAddress": {
+            "type": "object",
+            "properties": {
+                "addressLine1": {
+                    "type": "string",
+                    "xml": {
+                        "name": "AddressLine1",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "addressLine2": {
+                    "type": "string",
+                    "xml": {
+                        "name": "AddressLine2",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "city": {
+                    "type": "string",
+                    "xml": {
+                        "name": "City",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "country": {
+                    "type": "string",
+                    "xml": {
+                        "name": "Country",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "postalCode": {
+                    "type": "string",
+                    "xml": {
+                        "name": "PostalCode",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "state": {
+                    "type": "string",
+                    "xml": {
+                        "name": "State",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                }
+            },
+            "title": "SEAddress",
+            "xml": {
+                "name": "SEAddress",
+                "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ShippingCostRequest": {
+            "type": "object",
+            "properties": {
+                "seaddress": {
+                    "$ref": "#/definitions/SEAddress"
+                },
+                "secustomerName": {
+                    "type": "string"
+                },
+                "secustomerPhone": {
+                    "type": "string"
+                },
+                "senumberOfProducts": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "setransactionType": {
+                    "type": "string",
+                    "enum": [
+                        "SHIPPING_COST"
+                    ]
+                }
+            },
+            "title": "ShippingCostRequest",
+            "xml": {
+                "name": "ShippingCostRequest",
+                "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ShippingCostResponse": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "string",
+                    "xml": {
+                        "name": "Amount",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "code": {
+                    "type": "string",
+                    "xml": {
+                        "name": "Code",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "currency": {
+                    "type": "string",
+                    "xml": {
+                        "name": "Currency",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "reason": {
+                    "type": "string",
+                    "xml": {
+                        "name": "Reason",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                },
+                "setransactionType": {
+                    "type": "string",
+                    "enum": [
+                        "SHIPPING_COST"
+                    ]
+                },
+                "transactionDate": {
+                    "type": "string",
+                    "xml": {
+                        "name": "TransactionDate",
+                        "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                        "attribute": false,
+                        "wrapped": false
+                    }
+                }
+            },
+            "title": "ShippingCostResponse",
+            "xml": {
+                "name": "ShippingCostResponse",
+                "namespace": "https://www.AdvantageOnlineShopping.com/ShipEx/",
+                "attribute": false,
+                "wrapped": false
+            }
+        },
+        "ShoppingCartDto": {
+            "type": "object",
+            "properties": {
+                "hasWarranty": {
+                    "type": "boolean"
+                },
+                "hexColor": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "title": "ShoppingCartDto"
+        },
+        "ShoppingCartResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "reason": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "ShoppingCartResponse"
+        },
+        "ShoppingCartResponseDto": {
+            "type": "object",
+            "properties": {
+                "exceptionText": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "productsInCart": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/CartProduct"
+                    }
+                },
+                "sessionId": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            },
+            "title": "ShoppingCartResponseDto"
+        }
+    }
+}

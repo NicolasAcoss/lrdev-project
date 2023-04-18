@@ -1,0 +1,12 @@
+name: devWeb
+version: 2020.2.0
+
+enabled: true                                                 # Allows the user to enable or disable all the rules in a category.
+reporterType: JUnit                                           # Allows to change the reporter type, supported reporters: [JUnit, Tap].
+reportName: SLA-report-JUnit.xml                              # The report name, which is generated inside the script directory.
+rules:                                                        # List of the rules which the SLA enforces.
+  - rule: Total Passed Transactions                           # The SLA rule validates that the amount of passed transactions reach a minimum threshold.
+    type: passingTransactions                                 # The transaction type.
+    enabled: true                                             # Allows the user to enable or disable a specific rule.
+    arguments:                                                # The arguments which a given type is expecting (at least one entry).
+      amount: 2500                                            # The minimum amount of passed transactions for the SLA to pass.

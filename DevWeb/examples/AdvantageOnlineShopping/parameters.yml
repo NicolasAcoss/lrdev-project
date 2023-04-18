@@ -1,0 +1,16 @@
+parameters:
+  - name: userID
+    type: csv
+    fileName: accounts.txt
+    columnName: userID
+    nextValue: iteration
+    nextRow: sequential
+    onEnd: loop
+  - name: userPWD
+    type: csv
+    fileName: accounts.txt
+    columnName: userPWD
+    nextValue: iteration
+    nextRow: same as userID
+    onEnd: loop
+    

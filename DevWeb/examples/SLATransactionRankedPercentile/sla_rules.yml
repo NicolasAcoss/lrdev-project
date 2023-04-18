@@ -1,0 +1,27 @@
+name: devWeb
+version: 2020.2.0
+
+enabled: true                                                 # Allows the user to enable or disable all the rules in a category.
+reporterType: JUnit                                           # Allows to change the reporter type, supported reporters: [JUnit, Tap].
+reportName: SLA-report-JUnit.xml                              # The report name, which is generated inside the script directory.
+rules:                                                        # List of the rules which the SLA enforces.
+  - rule: Transaction Rank Percentile                         # The SLA rule validates if transaction duration measurements meet percentile rank specified in the arguments.
+    type: TRP                                                 # The transaction type.
+    enabled: true                                             # Allows the user to enable or disable a specific rule.
+    arguments:                                                # The arguments which a given type is expecting (at least one entry).
+      - transactionName: Login                                # The name of the transaction for which we want to calculate the transaction percentile rank.
+        ranges: [3000, 3500, 4000, 4500]                      # Defines the duration ranges in milliseconds. For example, 3500 defines the range 0-3500.
+        threshold:                                            # The number of threshold ranks must match the number of ranges.
+          ranks: [80, 85, 90, 95]                             # Defines the percentile ranks for the ranges. For example, 85% of transactions are required to have a duration of 0-3500 milliseconds.
+      - transactionName: Search
+        ranges: [2700, 3500, 3800]
+        threshold:
+          ranks: [80, 85, 90]
+      - transactionName: Order
+        ranges: [5000, 7000]
+        threshold:
+          ranks: [85, 90]
+      - transactionName: Logout
+        ranges: [3200, 4200, 5200, 6999]
+        threshold:
+          ranks: [70, 80, 85, 90]

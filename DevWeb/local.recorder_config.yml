@@ -1,0 +1,38 @@
+name: devWebRecorder
+version: 2022.2.0
+
+mitmdump:
+  path: ./bin/mitmdump                                                    #The path to the mitmdump executable.
+
+logger:                                                                   # Configuration for the system wide logger.
+  filename: ./logs/recorder.log                                           # The location and name of the log file.
+  logLevel: 'info'                                                        # Log level. Possible values: [trace, debug, info, warning, error].
+  showInConsole: true                                                     # If false, nothing will be printed to the console.
+
+proxy_recorder:
+  proxy_port: 8156                                                        # The port that the proxy listens on.
+  proxy_host: 'default'                                                   # The host address for binding (instead of localhost).
+  disable_self_signed_cert_verification: true                             # Approve using self-signed certifications during recording.
+  anti_cache: true                                                        # Strip out request headers that might cause the server to return 304-not-modified.
+  http2_priority: default                                                 # Enable/disable PRIORITY forwarding for HTTP/2 connections. Disabled by default, because some web servers fail to correctly implement RFC.
+  http2: 'default'                                                        # Enable/disable HTTP/2 support. Enabled by default. Possible values: ['default', 'enable', 'disable']
+  client_certs: ''                                                        # Client certificate file or directory. Certificate files must be in PEM format and should contain both the unencrypted private key and the certificate.
+  custom_ca_certificate: ''                                               # Path to custom CA certificate to be used instead of default.
+  provide_certificate: true                                               # If true, the ProxyRecorder will generate a unique certificate and try to install it.
+  allow_remote: false                                                     # Allow remote clients to connect to proxy. When set to false, client cannot connect to proxy unless it is on the same network or the proxyauth option is set.
+  add_upstream_certs_to_client_chain: true                                # Add all certificates of the upstream server to the certificate chain that will be served to the proxy client, as extras.
+  ignoreHosts: []                                                         # Excluded hostnames list. Use regular expressions, with values separated by “,”. For example: [".*google.com.*, .*outlook.com.*"]
+  launchBrowser: ""                                                       # The browser to launch (Chrome, Chromium, Safari, or leave empty to disable).                                                                          # Note:
+                                                                          # Chromium: Must be added to the PATH environment variable.
+                                                                          # Safari: Requires manually setting the proxy, and use in private session with disabled cache.
+
+proxy:
+  usePac: false                                                           # Indicates whether to use PAC during recording.
+  pacAddress: ""                                                          # The URL for the PAC location.
+  useProxy: false                                                         # Indicates whether to use proxy during recording.
+  proxyServer: ""                                                         # Proxy server that should be used. Format: "server:port" or "http(s)://server:port"
+  proxyDomain: ""                                                         # Proxy server authentication domain.
+  proxyUser: ""                                                           # Proxy server authentication user name.
+  proxyPassword: ""                                                       # Proxy server authentication password.
+  proxyAuthenticationType: ""                                             # Proxy server authentication type. Possible values: ["none", "basic", "ntlm"].
+  excludedHosts: []                                                       # Proxy hosts exception list. Use wildcard expressions, for example ['prefix.*', '.*.domain'].

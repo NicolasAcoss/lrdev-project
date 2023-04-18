@@ -1,0 +1,19 @@
+name: devWeb
+version: 2020.2.0
+
+enabled: true                                                 # Allows the user to enable or disable all the rules in a category.
+reporterType: JUnit                                           # Allows to change the reporter type, supported reporters: [JUnit, Tap].
+reportName: SLA-report-JUnit.xml                              # The report name, which is generated inside the script directory.
+rules:                                                        # List of the rules which the SLA enforces.
+  - rule: Transaction Response Time                           # The SLA rule measures the average duration of the given transactions.
+    type: averageTRT                                          # The transaction type.
+    enabled: true                                             # Allows the user to enable or disable a specific rule.
+    arguments:                                                # The arguments which a given type is expecting (at least one entry).
+      - transactionName: Search                               # The name of the transaction for which we want to calculate the average.
+        threshold:
+          - averageTime: 3000                                 # The average time in milliseconds above which the SLA rule will fail.
+  - rule: Percentage of Failed Transactions                   # The SLA rule measures the percentage of total failed transactions.
+    type: failureRate                                         # The transaction type.
+    enabled: true                                             # Allows the user to enable or disable a specific rule.
+    arguments:                                                # The arguments which a given type is expecting (one entry).
+      percentage: 3                                           # The percentage threshold above which the SLA rule will fail.

@@ -1,0 +1,45 @@
+files:                                  # A list of all the extra files which are a mandatory part of the script
+  - name: extra.js                      # The file name, it can be relative to the script directory or rooted
+    role: script                        # The role of the file in the script. Currently only "script" role is supported
+
+flow:
+  # Allow the user to enable or disable the flow control
+  enabled: true
+  initialize:
+    # List of initializers to be used.
+    # An empty list will lead to no initializers.
+    items:
+      - name: "set defaults"
+      - name: "login"
+  run:
+    # Define the logic between the items, can be sequential, random or shuffle.
+    logic: "random"
+    items:
+      - name: "Action1"
+        # Probability value between 1 to 99 include. Total probability of all items should be 100%.
+        probability: 33
+      - name: "Block_1"
+        logic: "sequential"
+        # Loop a positive number define the number of times to run the current section
+        loop: 5
+        items:
+          - name: "Action3"
+          - name: "Block_1"
+            logic: "sequential"
+            # Loop a positive number define the number of times to run the current section
+            loop: 7
+            items:
+              - name: "Action3"
+              - name: "Action3"
+          - name: "Action2"
+        # Probability value between 1 to 99 include. Total probability of all items should be 100%.
+        probability: 33
+      - name: "Action3"
+        # Probability value between 1 to 99 include. Total probability of all items should be 100%.
+        probability: 34
+  finalize:
+    # List of finalizers to be used.
+    # An empty list will lead to no initializers.
+    items:
+      - name: "logout"
+      - name: "clear cookies"

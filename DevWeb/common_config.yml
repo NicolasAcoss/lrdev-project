@@ -1,0 +1,5 @@
+analytics:                                                                                    # Configuration for the usage analytics component
+  enable: true                                                                               # If true, the usage analytics component is enabled during the run.
+  apiServer: "18.207.39.148" # 18.207.39.148                                                               # The host name of the usage analytics web server.
+  ignoreBadCertificate: true                                                                  # If true, SSL accepts any certificate presented by the analytics server and any hostname in that certificate.
+

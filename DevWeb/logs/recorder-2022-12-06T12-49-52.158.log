@@ -1,0 +1,9 @@
+[13:35:42.77] Info: Launching Proxy Recorder with the following args: [--listen-port 8156 --set termlog_verbosity=info --set flow_detail=2 --anticache --set ssl_insecure=true --set confdir=C:/Users/AC75008734/Desktop/Dossiers/Projets/Projet_1_(LoadRunner_Developer)/LRD/LoadRunner_Developer_2022.2/DevWeb/cert --set add_upstream_certs_to_client_chain=true --scripts C:/Users/AC75008734/Desktop/Dossiers/Projets/Projet_1_(LoadRunner_Developer)/LRD/LoadRunner_Developer_2022.2/DevWeb/addonScripts/LogFormatter.py --scripts C:/Users/AC75008734/Desktop/Dossiers/Projets/Projet_1_(LoadRunner_Developer)/LRD/LoadRunner_Developer_2022.2/DevWeb/addonScripts/NetworkDumper.py --set har_dump_file_path=C:\Users\AC75008734\Desktop\Dossiers\Projets\Projet_1_(LoadRunner_Developer)\LRD\LoadRunner_Developer_2022.2\DevWeb\tutoword.har]
+[13:35:42.78] Info: The Proxy Recorder is initializing. Please wait for the next message before starting your business workflow..
+[13:35:50.38] Info: Loading script C:/Users/AC75008734/Desktop/Dossiers/Projets/Projet_1_(LoadRunner_Developer)/LRD/LoadRunner_Developer_2022.2/DevWeb/addonScripts/LogFormatter.py
+[13:35:50.38] Info: Loading script C:/Users/AC75008734/Desktop/Dossiers/Projets/Projet_1_(LoadRunner_Developer)/LRD/LoadRunner_Developer_2022.2/DevWeb/addonScripts/NetworkDumper.py
+[13:35:50.39] Info: Press any key to stop the recording
+[13:35:50.39] Info: Proxy server listening at http://*:8156
+[13:39:10.04] Info: The Proxy Recorder has finished recording.
+[13:39:10.04] Info: The Proxy Recorder is preparing the HAR results file. The recording window will close automatically (do not close the window manually during this process).
+[13:39:10.06] Info: [::1]:56731: clientconnect

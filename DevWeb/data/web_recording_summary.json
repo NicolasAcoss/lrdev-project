@@ -1,0 +1,162 @@
+{
+	"FilterHeaders": [
+		{
+			"Header": "",
+			"IncludeInScript": false
+		}
+	],
+	"FilterResources": [
+		{
+			"IsNonResource": true,
+			"type": "application/javascript"
+		},
+		{
+			"IsNonResource": true,
+			"type": "text/html"
+		},
+		{
+			"IsNonResource": false,
+			"type": "text/plain"
+		}
+	],
+	"GeneralInfo": {
+		"BrowserVersion": "",
+		"IsWinInetMode": false,
+		"MaxUsedConnections": 0,
+		"RecordedBrowser": "",
+		"RecordingDate": "Dec-06-2022",
+		"RecordingDuration": 0,
+		"RecordingMode": "N/A",
+		"RecordingTimeStamp": 1670332571,
+		"RecordingType": "Browser",
+		"TotalBytesReceived": 818115,
+		"TotalBytesSent": 3535,
+		"TotalRequests": 8,
+		"UserAgent": "",
+		"ReadOnly": true
+	},
+	"HostInfo": [
+		{
+			"DomainName": "urssaf.fr",
+			"Domains": [
+				{
+					"HTTPVersion": "HTTP/1.1",
+					"IP": "",
+					"IncludeInScript": true,
+					"Name": "www.urssaf.fr",
+					"Port": 443,
+					"Requests": [
+						{
+							"URL": "https://www.urssaf.fr/",
+							"CompressionType": "",
+							"DataType": "text/html",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 302,
+							"Size": 634
+						},
+						{
+							"URL": "https://www.urssaf.fr/portail/",
+							"CompressionType": "gzip",
+							"DataType": "text/plain",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 302,
+							"Size": 637
+						}
+					],
+					"SSLCipher": "N/A",
+					"SSLVersion": "N/A"
+				},
+				{
+					"HTTPVersion": "HTTP/1.1",
+					"IP": "",
+					"IncludeInScript": true,
+					"Name": "www.urssaf.fr",
+					"Port": 80,
+					"Requests": [
+						{
+							"URL": "http://www.urssaf.fr/",
+							"CompressionType": "",
+							"DataType": "",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 302,
+							"Size": 135
+						}
+					],
+					"SSLCipher": "None",
+					"SSLVersion": "None"
+				}
+			],
+			"IncludeInScript": true
+		},
+		{
+			"DomainName": "googletagmanager.com",
+			"Domains": [
+				{
+					"HTTPVersion": "HTTP/2.0",
+					"IP": "",
+					"IncludeInScript": false,
+					"Name": "www.googletagmanager.com",
+					"Port": 443,
+					"Requests": [
+						{
+							"URL": "https://www.googletagmanager.com/gtm.js?id=GTM-TDZ922M&gtm_auth=zOd6-L-VF2mCNk3T6Tl6Sw&gtm_preview=env-2&gtm_cookies_win=x",
+							"CompressionType": "",
+							"DataType": "application/javascript",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 200,
+							"Size": 132704
+						},
+						{
+							"URL": "https://www.googletagmanager.com/gtm.js?id=GTM-M7N4FZ5&gtm_auth=DZOH7XXSi0S5WmIItXgkuQ&gtm_preview=env-1&gtm_cookies_win=x",
+							"CompressionType": "",
+							"DataType": "application/javascript",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 200,
+							"Size": 112984
+						},
+						{
+							"URL": "https://www.googletagmanager.com/gtm.js?id=GTM-5WMCC7G&gtm_auth=AzNZ1eVDfcLLmq-RtS199w&gtm_preview=env-2&gtm_cookies_win=x",
+							"CompressionType": "",
+							"DataType": "application/javascript",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 200,
+							"Size": 109775
+						},
+						{
+							"URL": "https://www.googletagmanager.com/gtm.js?id=GTM-MWV8XZ2&gtm_auth=GcyFob85_-NQKXUO0Sk6WQ&gtm_preview=env-1&gtm_cookies_win=x",
+							"CompressionType": "",
+							"DataType": "application/javascript",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 200,
+							"Size": 354848
+						},
+						{
+							"URL": "https://www.googletagmanager.com/gtm.js?id=GTM-KCC69DM&gtm_auth=_-cjQ2zqqh5MIL2JjLkCTQ&gtm_preview=env-1&gtm_cookies_win=x",
+							"CompressionType": "",
+							"DataType": "application/javascript",
+							"DownloadTime": 0,
+							"EventId": 0,
+							"HttpStatus": 200,
+							"Size": 106398
+						}
+					],
+					"SSLCipher": "N/A",
+					"SSLVersion": "N/A"
+				}
+			],
+			"IncludeInScript": true
+		}
+	],
+	"WebSocket": {
+		"IncludeInScript": false,
+		"IsScriptIncludeWebSocket": false
+	},
+	"NumberOfCorrelations": 0
+}

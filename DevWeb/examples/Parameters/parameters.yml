@@ -1,0 +1,24 @@
+parameters:
+  - name: myParam1
+    type: csv
+    fileName: data.csv
+    columnName: ID1
+    nextValue: iteration
+    nextRow: sequential
+    onEnd: loop
+  - name: myParam2
+    type: csv
+    fileName: data.csv
+    columnName: ID2
+    nextValue: always
+    nextRow: same as myParam1
+    onEnd: loop
+  - name: uniqueParam
+    fileName: data.csv
+    type: csv
+    columnName: ID3
+    nextValue: always
+    nextRow: unique
+    blockSize: 5
+    onEnd: loop
+

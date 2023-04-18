@@ -1,0 +1,57 @@
+httpConnection:
+  maxPersistentConnectionsPerHost: 6
+  maxConnectedHosts: 30
+  maxRedirectDepth: 10
+  keepAliveTimeout: 60
+  connectTimeout: 120
+  abruptClose: false
+  requestTimeout: 120
+  canonicalHeaderEntries: true
+grpc:
+  connectTimeout: 120
+  keepAliveTime: 0
+  maxRecvMsgSize: 0
+  maxSendMsgSize: 0
+proxy:
+  usePAC: false
+  pacAddress: ""
+  useProxy: false
+  proxyServer: ""
+  proxyDomain: ""
+  proxyUser: ""
+  proxyPassword: ""
+  proxyAuthenticationType: ""
+  excludedHosts: []
+ssl:
+  disableHTTP2: false
+  ignoreBadCertificate: false
+  tlsMaxVersion: tls12
+replay:
+  simulateNewUser: true
+  saveSnapshots: never
+  snapshotBodySizeLimit: -1
+  useCache: false
+  enableDynatrace: false
+  resourceHttpErrorAsWarning: true
+  enableIntegratedAuthentication: false
+vts:
+  useProxy: false
+  proxyServer: ""
+  proxyUser: ""
+  proxyPassword: ""
+  portInQueryString: false
+  httpPort: 80
+  httpsPort: 443
+  ignoreBadCertificate: false
+encryption:
+  keyLocation: ""
+vuserLogger:
+  errorBufferSize: 4096
+  logMode: none
+  logLevel: error
+  showInConsole: false
+flow:
+  enabled: false
+thinkTime:
+  type: asRecorded
+  limit: -1

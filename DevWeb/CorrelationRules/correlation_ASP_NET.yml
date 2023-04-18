@@ -1,0 +1,83 @@
+categories:
+  - name: ASP.NET                                               #The name of the category, not used in code, this is for the user
+    enabled: false                                              #Allows the user to enable or disable all the rules in a category
+    rules:                                                      #A list of rules
+      - name: VIEWSTATE                                         #The name of the rule, will be used in the code the user writes to identify the rule. Must be unique across all categories
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "\"__VIEWSTATE\" value=\""             #Left boundary of the boundary based extractor
+           rightBoundary: "\""                                  #Right boundary of the boundary based extractor
+           scope: "body"
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp" or "none" which prevent apply automatically
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__VIEWSTATE"]                        
+      - name: "|__VIEWSTATE|"                                   #The name of the rule, will be used in the code the user writes to identify the rule. Must be unique across all categories
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "|hiddenField|__VIEWSTATE|"            #Left boundary of the boundary based extractor
+           rightBoundary: "|"                                   #Right boundary of the boundary based extractor
+           scope: "body"
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__VIEWSTATE"]                                      
+      - name: VIEWSTATEGENERATOR
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "\"__VIEWSTATEGENERATOR\" value=\""    #Left boundary of the boundary based extractor
+           rightBoundary: "\""                                  #Right boundary of the boundary based extractor
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__VIEWSTATEGENERATOR"]                         
+      - name: EVENTVALIDATION
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "\"__EVENTVALIDATION\" value=\""       #Left boundary of the boundary based extractor
+           rightBoundary: "\""                                  #Right boundary of the boundary based extractor
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__EVENTVALIDATION"]           
+      - name: "|__EVENTVALIDATION|"                             #The name of the rule, will be used in the code the user writes to identify the rule. Must be unique across all categories
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "|hiddenField|__EVENTVALIDATION|"      #Left boundary of the boundary based extractor
+           rightBoundary: "|"                                   #Right boundary of the boundary based extractor
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__EVENTVALIDATION"]
+      - name: EVENTTARGET
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "\"__EVENTTARGET\" value=\""           #Left boundary of the boundary based extractor
+           rightBoundary: "\""                                  #Right boundary of the boundary based extractor
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__EVENTTARGET"]          
+      - name: EVENTARGUMENT
+        type: boundary                                          #The type of the rule. One of "boundary", "regexp", "json", "cookie", "html", "xpath"
+        enabled: true                                           #Allows the user to enable and disable particular rules
+        options:                                                #The options particular to this rule type
+           leftBoundary: "\"__EVENTARGUMENT\" value=\""         #Left boundary of the boundary based extractor
+           rightBoundary: "\""                                  #Right boundary of the boundary based extractor
+        appliers:
+          - type: simple                                        #The type of the applier. One of "simple", "boundary", "regexp"
+            scope: body                                         #The scope that applier will be applied. One of "all", "url", "querystring", "headers", "body"
+            options:
+              fieldName: ["__EVENTARGUMENT"]                              
